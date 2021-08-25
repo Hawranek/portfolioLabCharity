@@ -15,6 +15,9 @@ public class HomeController {
 
     private final InstitutionRepository institutionRepository;
 
+    //instead of this way of adding modelattribute, we can
+    //add this list in homeAction as
+    // model.addAttribute("institutions",institutionRepository.findAll());
     @ModelAttribute("institutions")
     public List<Institution> institutions(){return institutionRepository.findAll();}
 
@@ -24,7 +27,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String homeAction(Model model){
-
         return "index";
     }
 }
