@@ -2,20 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
-</head>
-<body>
-<header class="header--main-page">
     <%@include file="header.jsp" %>
-    >
+
 
     <div id="start" class="slogan container container--90">
         <div class="slogan--item">
@@ -30,7 +19,7 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>${quantity!=null ? quantity : 0}</em>
+            <em><c:out value="${quantity}"/></em>
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -38,7 +27,7 @@
         </div>
 
         <div class="stats--item">
-            <em>${donations!=null ? donations.size() : 0}</em>
+            <em><c:out value="${donations}"/></em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -107,7 +96,7 @@
                     <div class="subtitle">${institution.description}</div>
                 </div>
 
-                <c:if test="${i.count%2==0 || institutions.size()==i.count}">
+                <c:if test="${i.count%2==0 || i.last}">
                     </li>
                 </c:if>
             </c:forEach>

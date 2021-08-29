@@ -1,18 +1,15 @@
 package pl.coderslab.charity;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,18 +20,18 @@ public class HomeController {
     private final DonationRepository donationRepository;
     private final CategoryRepository categoryRepository;
 
+    @ModelAttribute("institutions")
+    public List<Institution> institutions() {
+        //limitowanie ilości wyników, dzieląc je na strony, i wyświetlając konkretną z nich
+        return institutionRepository.findAll(PageRequest.of(0, 4)).getContent();
+    }
+
     //instead of this way of adding modelattribute, we can
     //add this list in homeAction as
     // model.addAttribute("institutions",institutionRepository.findAll());
-    @ModelAttribute("institutions")
-    public List<Institution> institutions() {
-        return institutionRepository.findAll();
-    }
-
-    //j.w.
     @ModelAttribute("donations")
-    public List<Donation> donations() {
-        return donationRepository.findAll();
+    public long donations() {
+        return donationRepository.count();
     }
 
     public HomeController(InstitutionRepository institutionRepository, DonationRepository donationRepository, CategoryRepository categoryRepository) {
@@ -57,7 +54,7 @@ public class HomeController {
 //        donation.setPickUpComment("Bez komentarza");
 //        donationRepository.save(donation);
 
-        Integer allByQuantity = donationRepository.sumOfQuantities();
+        Integer allByQuantity = donationRepository.sumOfQuantities().orElse(0);
         model.addAttribute("quantity", allByQuantity);
         return "index";
     }
