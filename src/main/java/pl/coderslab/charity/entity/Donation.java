@@ -1,8 +1,14 @@
 package pl.coderslab.charity.entity;
 
+import lombok.Builder;
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -14,19 +20,43 @@ public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NumberFormat
+    @NotNull(message = "Ilość przekazywanych worków nie może być mniejsza niż 1")
     private Integer quantity;
     @ManyToMany
+    @NotEmpty(message = "Musisz wybrać przynajmniej jedną kategorię przekazywanych darów")
     private List<Category> categories;
     @ManyToOne
+    @NotNull(message = "Wybierz instytucję, której chcesz przekazać dary")
     private Institution institution;
+    @NotBlank(message = "Nie podałeś ulicy")
     private String street;
+    @NotBlank(message = "Nie podałeś miasta")
     private String city;
+    @NotBlank(message = "Nie podałeś kodu pocztowego")
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Wybierz datę odebrania darów od Ciebie")
     private LocalDate pickUpDate;
     @DateTimeFormat(pattern = "HH:mm")
+    @NotNull(message = "Wybierz godzinę odebrania darów od Ciebie")
     private LocalTime pickUpTime;
     private String pickUpComment;
+
+    @Override
+    public String toString() {
+        return "Donation{" +
+                "quantity=" + quantity +
+                ", categories=" + categories +
+                ", institution=" + institution +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", pickUpDate=" + pickUpDate +
+                ", pickUpTime=" + pickUpTime +
+                ", pickUpComment='" + pickUpComment + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;
