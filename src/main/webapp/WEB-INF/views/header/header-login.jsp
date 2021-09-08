@@ -4,8 +4,8 @@
 
 <ul class="nav--actions">
     <sec:authorize access="isAnonymous()">
-        <li><a href="/user/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-        <li><a href="/user/form" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        <li><a href="<c:url value="/user/login"/>" class="btn btn--small btn--without-border">Zaloguj</a></li>
+        <li><a href="<c:url value="/user/form"/>" class="btn btn--small btn--highlighted">Załóż konto</a></li>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         <li>
