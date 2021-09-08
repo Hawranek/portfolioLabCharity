@@ -23,18 +23,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/form")
+    @GetMapping("/register")
     public String form(Model model) {
         model.addAttribute("user", new User());
         return "user/register-form";
     }
 
-    @PostMapping("/form")
+    @PostMapping("/register")
     public String save(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "user/register-form";
         }
         userService.saveUser(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/login")
+    public String loginForm(Model model){
+        model.addAttribute("user", new User());
+        return "user/login-form";
     }
 }
