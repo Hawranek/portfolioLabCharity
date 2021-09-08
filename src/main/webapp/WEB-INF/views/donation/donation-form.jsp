@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%@ include file="header-form.jsp" %>
+<%@ include file="../header-form.jsp" %>
 
 <div class="slogan container container--90">
     <div class="slogan--item">
@@ -220,7 +220,7 @@
     </div>
 </section>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 
 

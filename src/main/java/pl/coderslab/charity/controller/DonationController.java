@@ -44,13 +44,13 @@ public class DonationController {
     @GetMapping("/form")
     public String add(Model model){
         model.addAttribute("donation",new Donation());
-        return "form";
+        return "donation/donation-form";
     }
 
     @PostMapping("/form")
     public String save(@Valid Donation donation, BindingResult result){
         if (result.hasErrors()){
-            return "form";
+            return "donation/donation-form";
         }
         donationRepository.save(donation);
         return "redirect:/";
