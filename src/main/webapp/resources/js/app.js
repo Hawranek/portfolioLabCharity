@@ -179,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const bottomsumcol1 = summary.querySelector(".form-section--columns").firstChild.nextSibling;
             const bottomsumcol2 = summary.querySelector(".form-section--columns").lastChild.previousSibling;
             const quantityinput = document.querySelector("input#quantity");
-            const categoriesinput = document.querySelectorAll("input[name='categories']");
-            const institutioninput = document.querySelectorAll("input[name='institution']");
+            const categoriesinput = document.querySelectorAll("input[name='categories']:checked");
+            const institutioninput = document.querySelector("input[name='institution']:checked");
             let street = "";
             let city = "";
             let zipCode = "";
@@ -191,19 +191,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 const quantity = quantityinput.value;
                 let categories = "";
                 for (let i = 0; i < categoriesinput.length; i++) {
-                    if (categoriesinput[i].checked) {
-                        if (i !== 0) {
-                            categories += ", ";
-                        }
-                        categories += categoriesinput[i].parentElement.querySelector(".description").innerText;
+                    categories += categoriesinput[i].parentElement.querySelector(".description").innerText;
+                    if (i !== categoriesinput.length - 1) {
+                        categories += ", ";
                     }
+
                 }
-                let institution = "";
-                for (let i = 0; i < institutioninput.length; i++) {
-                    if (institutioninput[i].checked) {
-                        institution = institutioninput[i].parentElement.querySelector(".description").innerText;
-                    }
-                }
+                let institution = institutioninput.parentElement.querySelector(".description").innerText;
+
                 topsum1.innerText = quantity + " worków zawierających " + categories;
                 topsum2.innerText += " " + institution;
 
@@ -242,10 +237,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (this.currentStep == 4) {
                 this.institutionValidation();
             }
-            if (this.currentStep==3){
+            if (this.currentStep == 3) {
                 this.quantityValidation();
             }
-            if (this.currentStep==2){
+            if (this.currentStep == 2) {
                 this.categoryValidation();
             }
         }
@@ -275,9 +270,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         addressValidation() {
-            const stepInstructions= document.querySelector("[data-step='4'] h3");
-            const h4=stepInstructions.querySelector("h4");
-            if (h4){
+            const stepInstructions = document.querySelector("[data-step='4'] h3");
+            const h4 = stepInstructions.querySelector("h4");
+            if (h4) {
                 stepInstructions.removeChild(h4);
             }
             let street = form.querySelector("input#street").value;
@@ -290,12 +285,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 invalidMessage += "Nie podano ulicy odbioru\n";
             } else if (!city) {
                 invalidMessage += "Nie podano miasta odbioru\n"
-            }else if (!zipCode){
-                invalidMessage+="Nie podano kodu pocztowego miasta odbioru\n";
-            }else if (!pickUpTime){
-                invalidMessage+="Nie podano godziny odbioru\n";
-            }else if (!pickUpDate){
-                invalidMessage+="Nie podano daty odbioru\n";
+            } else if (!zipCode) {
+                invalidMessage += "Nie podano kodu pocztowego miasta odbioru\n";
+            } else if (!pickUpTime) {
+                invalidMessage += "Nie podano godziny odbioru\n";
+            } else if (!pickUpDate) {
+                invalidMessage += "Nie podano daty odbioru\n";
             }
 
             if (invalidMessage != "") {
@@ -307,6 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
         }
+
 
         check(elements) {
             let count = 0;

@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -22,6 +20,7 @@ public class Donation {
     private Long id;
     @NumberFormat
     @NotNull(message = "Ilość przekazywanych worków nie może być mniejsza niż 1")
+    @Min(1)
     private Integer quantity;
     @ManyToMany
     @NotEmpty(message = "Musisz wybrać przynajmniej jedną kategorię przekazywanych darów")
@@ -37,11 +36,14 @@ public class Donation {
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Wybierz datę odebrania darów od Ciebie")
+    @Future
     private LocalDate pickUpDate;
     @DateTimeFormat(pattern = "HH:mm")
     @NotNull(message = "Wybierz godzinę odebrania darów od Ciebie")
     private LocalTime pickUpTime;
     private String pickUpComment;
+
+    //tutaj można zamiast wpisywania w klasie message dla każdej walidacji dodać plik z listą message'ów
 
     @Override
     public String toString() {

@@ -1,8 +1,9 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.controller;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
@@ -40,20 +41,8 @@ public class HomeController {
         this.categoryRepository = categoryRepository;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String homeAction(Model model) {
-//        Donation donation=new Donation();
-//        donation.setQuantity(5);
-//        donation.setInstitution(institutionRepository.findById(1L).orElse(null));
-//        donation.setCategories(Arrays.asList(categoryRepository.findById(1L).orElse(null)));
-//        donation.setStreet("Jakaśtam");
-//        donation.setCity("Warszawa");
-//        donation.setZipCode("02-822");
-//        donation.setPickUpDate(LocalDate.now());
-//        donation.setPickUpTime(LocalTime.now());
-//        donation.setPickUpComment("Bez komentarza");
-//        donationRepository.save(donation);
-
         Integer allByQuantity = donationRepository.sumOfQuantities().orElse(0);
         model.addAttribute("quantity", allByQuantity);
         return "index";
