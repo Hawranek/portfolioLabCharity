@@ -10,6 +10,15 @@
     <h2>Załóż konto</h2>
     <form:form modelAttribute="user" method="post">
         <div class="form-group">
+            <form:input path="firstName" name="firstName" placeholder="Imię" />
+            <form:errors path="firstName" cssClass="error"/>
+        </div>
+        <div class="form-group">
+            <form:input path="lastName" name="lastName" placeholder="Nazwisko" />
+            <form:errors path="lastName" cssClass="error"/>
+        </div>
+
+        <div class="form-group">
             <form:input path="email" name="email" placeholder="Email" />
             <form:errors path="email" cssClass="error"/>
         </div>

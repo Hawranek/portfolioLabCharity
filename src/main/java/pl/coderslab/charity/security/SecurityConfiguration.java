@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/","/user/**").permitAll()
-                .antMatchers("/donation/**").authenticated()
+                .antMatchers("/donation/**","/admin/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().usernameParameter("email")
