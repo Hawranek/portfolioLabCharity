@@ -20,7 +20,7 @@ Funkcjonalności:
 <!-- 	* zaznaczenie, że dar został komuś oddany (archiwizacja). -->
 
 Użyte technologie:
-	* Spring Boot
-	* Spring Form
-	* Hibernate
-	* Spring Data JPA
+	* Spring Boot,
+	* Spring Form,
+	* Hibernate,
+	* Spring Data JPA.
