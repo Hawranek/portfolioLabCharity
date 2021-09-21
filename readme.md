@@ -6,9 +6,9 @@ Funkcjonalności:
 2. Dodawanie darów
 3. Profil administratora:
 	* logowanie,
+	* przeglądanie, edycja, usuwanie zarejestrowanych użytkowników,
 <!-- 	* zarządzanie (CRUD) administratorami, -->
 <!-- 	* zarządzanie (CRUD) zaufanymi instytucjami, -->
-	* przeglądanie, edycja, usuwanie zarejestrowanych użytkowników,
 <!-- 	* przegląd przekazanych darów. -->
 <!-- 4. Możliwość określenia statusów darów (złożone/odebrane/przekazane) -->
 5. Profil użytkownika:
