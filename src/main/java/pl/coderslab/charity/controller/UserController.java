@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.UserRepository;
+import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.UserService;
 
 import javax.validation.Valid;

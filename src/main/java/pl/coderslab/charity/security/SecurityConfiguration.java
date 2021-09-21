@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 import pl.coderslab.charity.service.SpringDataUserDetailsService;
 
 @Configuration
@@ -19,12 +21,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/","/user/**").permitAll()
-                .antMatchers("/donation/**","/admin/**").authenticated()
+                .antMatchers("/donation/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().usernameParameter("email")
                 .loginPage("/user/login")
-                .permitAll().defaultSuccessUrl("/")
+                .permitAll().successHandler(appAuthenticationSuccessHandler())
                 .and()
                 .logout().logoutUrl("/logout")
                 .invalidateHttpSession(true)
@@ -40,4 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
+
+    @Bean
+public AuthenticationSuccessHandler appAuthenticationSuccessHandler(){
+    return new AppAuthenticationSuccesHandler();
+}
 }
