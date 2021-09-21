@@ -1,6 +1,6 @@
 Projekt do portfolio z kursu CodersLab
 
-Aplikacja do przekazywania darów
+Aplikacja do przekazywania darów.
 Funkcjonalności:
 1. Landing page, który ma zachęcać do skorzystania z aplikacji.
 2. Dodawanie darów
