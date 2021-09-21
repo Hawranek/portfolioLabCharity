@@ -19,7 +19,7 @@ Funkcjonalności:
 <!-- 	* przeglądanie, edycja, kasowanie przekazanych darów, -->
 <!-- 	* zaznaczenie, że dar został komuś oddany (archiwizacja). -->
 
-Użyte technologie:
+6. Użyte technologie:
 	* Spring Boot,
 	* Spring Form,
 	* Hibernate,
