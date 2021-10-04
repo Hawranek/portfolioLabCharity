@@ -48,6 +48,7 @@
                                                                             <th>Nazwisko</th>
                                                                             <th>Role</th>
                                                                             <th>Email</th>
+                                                                            <th>Status</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -57,6 +58,7 @@
                                                                             <th>Nazwisko</th>
                                                                             <th>Role</th>
                                                                             <th>Email</th>
+                                                                            <th>Status</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </tfoot>
@@ -72,6 +74,7 @@
                                                                                     </c:forEach>
                                                                                 </td>
                                                                                 <td>${user.email}</td>
+                                                                                <td>${user.enabled}</td>
                                                                                 <td>
                                                                                     <a href="/admin/upgrade/${user.id}"
                                                                                         class="btn btn-primary btn-icon-split">
@@ -81,7 +84,7 @@
                                                                                         </span>
                                                                                         <span class="text">Dodaj
                                                                                             administratora</span>
-                                                                                    </a><br />
+                                                                                    </a>
                                                                                     <a href="/admin/degrade/${user.id}"
                                                                                         class="btn btn-secondary btn-icon-split">
                                                                                         <span
@@ -90,8 +93,8 @@
                                                                                         </span>
                                                                                         <span class="text">Usuń
                                                                                             administratora</span>
-                                                                                    </a><br />
-                                                                                    <a href="#"
+                                                                                    </a>
+                                                                                    <a href="/admin/edituser/${user.id}"
                                                                                         class="btn btn-warning btn-icon-split">
                                                                                         <span
                                                                                             class="icon text-white-50">
@@ -99,17 +102,41 @@
                                                                                                 class="fas fa-exclamation-triangle"></i>
                                                                                         </span>
                                                                                         <span class="text">Edytuj</span>
-                                                                                    </a><br/>
-                                                                                    <a href="#"
+                                                                                    </a>
+                                                                                    <a href="/admin/delete/${user.id}"
                                                                                         class="btn btn-danger btn-icon-split">
                                                                                         <span
                                                                                             class="icon text-white-50">
                                                                                             <i class="fas fa-trash"></i>
                                                                                         </span>
                                                                                         <span class="text">Usuń</span>
-                                                                                    </a><br/>
-
+                                                                                    </a>
+                                                                                    <c:if test="${user.enabled}">
+                                                                                        <a href="/admin/tenable/${user.id}"
+                                                                                            class="btn btn-danger btn-icon-split">
+                                                                                            <span
+                                                                                                class="icon text-white-50">
+                                                                                                <i
+                                                                                                    class="fas fa-trash"></i>
+                                                                                            </span>
+                                                                                            <span
+                                                                                                class="text">Zablokuj</span>
+                                                                                        </a>
+                                                                                    </c:if>
+                                                                                    <c:if test="${!user.enabled}">
+                                                                                        <a href="/admin/tenable/${user.id}"
+                                                                                            class="btn btn-success btn-icon-split">
+                                                                                            <span
+                                                                                                class="icon text-white-50">
+                                                                                                <i
+                                                                                                    class="fas fa-check"></i>
+                                                                                            </span>
+                                                                                            <span
+                                                                                                class="text">Odblokuj</span>
+                                                                                        </a>
+                                                                                    </c:if>
                                                                                 </td>
+
 
                                                                             </tr>
                                                                         </c:forEach>
