@@ -8,7 +8,7 @@ Funkcjonalności:
 3. Profil administratora:
 	* logowanie,
 	* przeglądanie, edycja, usuwanie zarejestrowanych użytkowników,
-<!-- 	* zarządzanie (CRUD) administratorami, -->
+	* zarządzanie (CRUD) administratorami,
 <!-- 	* zarządzanie (CRUD) zaufanymi instytucjami, -->
 <!-- 	* przegląd przekazanych darów. -->
 <!-- 4. Możliwość określenia statusów darów (złożone/odebrane/przekazane) -->
