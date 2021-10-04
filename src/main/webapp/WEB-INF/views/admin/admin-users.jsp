@@ -65,17 +65,23 @@
                                                                     <tbody>
                                                                         <c:forEach items="${users}" var="user">
                                                                             <tr>
+                                                                                <c:set var="contains" value="false" />
+
                                                                                 <td>${user.firstName}</td>
                                                                                 <td>${user.lastName}</td>
                                                                                 <td>
                                                                                     <c:forEach items="${user.roles}"
                                                                                         var="role">
                                                                                         ${role.name}<br />
+                                                                                        <c:if test="${role.name eq 'ROLE_ADMIN'}">
+                                                                                            <c:set var="contains" value="true"/>
+                                                                                        </c:if>
                                                                                     </c:forEach>
                                                                                 </td>
                                                                                 <td>${user.email}</td>
                                                                                 <td>${user.enabled}</td>
                                                                                 <td>
+                                                                                    <c:if test="${!contains}">
                                                                                     <a href="/admin/upgrade/${user.id}"
                                                                                         class="btn btn-primary btn-icon-split">
                                                                                         <span
@@ -84,7 +90,8 @@
                                                                                         </span>
                                                                                         <span class="text">Dodaj
                                                                                             administratora</span>
-                                                                                    </a>
+                                                                                    </a></c:if>
+                                                                                    <c:if test="${contains}">
                                                                                     <a href="/admin/degrade/${user.id}"
                                                                                         class="btn btn-secondary btn-icon-split">
                                                                                         <span
@@ -93,7 +100,7 @@
                                                                                         </span>
                                                                                         <span class="text">Usuń
                                                                                             administratora</span>
-                                                                                    </a>
+                                                                                    </a></c:if>
                                                                                     <a href="/admin/edituser/${user.id}"
                                                                                         class="btn btn-warning btn-icon-split">
                                                                                         <span
@@ -137,7 +144,7 @@
                                                                                     </c:if>
                                                                                 </td>
 
-
+                                                                                <c:set var="contains" value="false"/>
                                                                             </tr>
                                                                         </c:forEach>
                                                             </div>

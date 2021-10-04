@@ -46,8 +46,7 @@
                                                                         <form:form modelAttribute="user"
                                                                             action="/admin/adduser" method="post"
                                                                             name="adduser">
-                                                                            <input type="hidden" value="${user.id}">
-                                                                            <form:hidden path="id"/>
+                                                                            <input type="hidden" name="userid" value="${user.id}">
                                                                             <tr>
                                                                                 <th>Imię</th>
                                                                             </tr>
@@ -88,7 +87,7 @@
                                                                             <tr>
                                                                                 <th>Action</th>
                                                                             </tr>
-                                                                            <td><button type="submit">Dodaj</button>
+                                                                            <td><button type="submit">Zapisz</button>
                                                                             </td>
 
                                                                         </form:form>

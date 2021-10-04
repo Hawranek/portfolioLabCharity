@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
@@ -33,7 +36,9 @@ public class AdminController {
     }
 
     @ModelAttribute("roles")
-    List<Role> roles(){return userService.getRoles();}
+    List<Role> roles() {
+        return userService.getRoles();
+    }
 
     @RequestMapping
     public String index() {
@@ -72,35 +77,45 @@ public class AdminController {
         }
         return "redirect:/admin/users";
     }
-    
+
     @GetMapping("/delete/{userid}")
-    public String deleteUser(@PathVariable("userid") Long userId){
+    public String deleteUser(@PathVariable("userid") Long userId) {
         User userById = userService.findById(userId);
-        if(userById!=null){
+        if (userById != null) {
             userService.deleteUser(userById);
         }
         return "redirect:/admin/users";
     }
 
     @GetMapping("/adduser")
-    public String addUserForm(Model model){
+    public String addUserForm(Model model) {
         model.addAttribute("user", new User());
         return "admin/admin-adduser";
     }
 
-    //sprawdzić, dlaczego podczas edycji zamiast zmieniać dane istniejącego użytkownika, dodaje nowego
     @PostMapping("/adduser")
-    public String addUser(@Valid User user, BindingResult result){
-        if(result.hasErrors()){
+    public String addUser(@RequestParam("userid") Long userId, @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
             return "admin/admin-adduser";
         }
-        System.out.println(userService.findById(user.getId()).getId());         //przekazywany user nie ma ID.. dlaczego?
-        userService.saveUser(user);
+        User userToSave=new User();
+        if (userId != null) {
+            userToSave = userService.findById(userId);
+            userToSave.setEmail(user.getEmail());
+            userToSave.setPassword(user.getPassword());
+            userToSave.setFirstName(user.getFirstName());
+            userToSave.setLastName(user.getLastName());
+            userToSave.setRoles(user.getRoles());
+            userToSave.setEnabled(user.isEnabled());
+        } else {
+            userToSave = user;
+        }
+        userService.saveUser(userToSave);
         return "redirect:/admin/users";
     }
 
     @GetMapping("edituser/{userid}")
-    public String editForm(@PathVariable("userid") Long userId, Model model){
+    public String editForm(@PathVariable("userid") Long userId, Model model) {
         model.addAttribute("user", userService.findById(userId));
         return "admin/admin-adduser";
     }
