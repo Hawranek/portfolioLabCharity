@@ -1,6 +1,9 @@
 package pl.coderslab.charity.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,30 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.InstitutionRepository;
-import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.UserService;
-
-import java.util.List;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final InstitutionRepository institutionRepository;
     private final UserService userService;
 
     public AdminController(InstitutionRepository institutionRepository, UserService userService) {
-        this.institutionRepository = institutionRepository;
         this.userService = userService;
     }
 
