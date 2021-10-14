@@ -14,8 +14,6 @@ import pl.coderslab.charity.service.SpringDataUserDetailsService;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    //wlasny serwis do wyszukiwania użytkownika <- prezentacja
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

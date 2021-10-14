@@ -49,7 +49,7 @@ public class AdminController {
     public String upgradeToAdmin(@PathVariable("id") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
-            userService.upgradeToAdmin(userById);
+            userService.setRoleAdmin(userById);
         }
         return "redirect:/admin/users";
     }
@@ -58,7 +58,7 @@ public class AdminController {
     public String degradeAdmin(@PathVariable("id") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
-            userService.degradeAdmin(userById);
+            userService.removeRoleAdmin(userById);
         }
         return "redirect:/admin/users";
     }
