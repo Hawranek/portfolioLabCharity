@@ -1,5 +1,7 @@
 package pl.coderslab.charity.service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void upgradeToAdmin(User user) {
+    public void setRoleAdmin(User user) {
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         Set<Role> userRoles = user.getRoles();
         userRoles.add(adminRole);
@@ -51,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void degradeAdmin(User user) {
+    public void removeRoleAdmin(User user) {
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         if (user.getRoles().contains(adminRole)) {
             Set<Role> userRoles = user.getRoles();
@@ -84,5 +86,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Role> getRoles() {
         return roleRepository.findAll();
+    }
+
+    @Override
+    public void createUser(User user) {
+        user.setEnabled(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+        userRepository.save(user);        
+    }
+
+    @Override
+    public void setRoleUser(User user) {
+        user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+        userRepository.save(user);
     }
 }

@@ -9,6 +9,9 @@
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         <li>
+            <a href="<c:url value="/user/editprofile"/>" class="btn btn--small btn--without-border">Edytuj dane</a>
+        </li>
+        <li>
             <form action="<c:url value="/logout"/>" method="post">
                 <input type="submit" value="Wyloguj" class="btn btn--small btn--highlighted">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
