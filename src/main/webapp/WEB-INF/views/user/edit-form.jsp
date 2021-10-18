@@ -19,10 +19,11 @@
                                         <form:errors path="lastName" cssClass="error" />
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- email shouldn't be available for editing -->
+                                    <!-- <div class="form-group">
                                         <form:input path="email" name="email" placeholder="Email" />
                                         <form:errors path="email" cssClass="error" />
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <form:password path="password" name="password" placeholder="Hasło" />
                                         <form:errors path="password" cssClass="error" />
