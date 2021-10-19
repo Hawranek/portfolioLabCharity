@@ -44,7 +44,7 @@
                                                                     width="100%" cellspacing="0">
                                                                     <tbody>
                                                                         <form:form modelAttribute="user"
-                                                                            action="/admin/adduser" method="post"
+                                                                            action="/admin/user/form" method="post"
                                                                             name="adduser">
                                                                             <input type="hidden" name="userid" value="${user.id}">
                                                                             <tr>

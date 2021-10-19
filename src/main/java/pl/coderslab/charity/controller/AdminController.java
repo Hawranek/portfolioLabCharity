@@ -34,18 +34,18 @@ public class AdminController {
         return userService.getRoles();
     }
 
-    @RequestMapping
+    @RequestMapping                 //Landing page for admin
     public String index() {
         return "admin/admin-index";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/users")                                       //user list page
     public String userList(Model model) {
         model.addAttribute("users", userService.findAll());
         return "admin/admin-users";
     }
 
-    @GetMapping("/upgrade/{id}")
+    @GetMapping("/upgrade/{id}")                                //promoting user to admin
     public String upgradeToAdmin(@PathVariable("id") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
@@ -54,7 +54,7 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/degrade/{id}")
+    @GetMapping("/degrade/{id}")                                //degrading user from admin
     public String degradeAdmin(@PathVariable("id") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
@@ -63,7 +63,7 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/tenable/{userid}")
+    @GetMapping("/tenable/{userid}")                            //changing status from enabled to blocked and backwards
     public String enableUser(@PathVariable("userid") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
@@ -72,7 +72,7 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/delete/{userid}")
+    @GetMapping("/delete/{userid}")                             //deleting user
     public String deleteUser(@PathVariable("userid") Long userId) {
         User userById = userService.findById(userId);
         if (userById != null) {
@@ -81,20 +81,20 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/adduser")
+    @GetMapping("/user/form")                                     //adding user form
     public String addUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "admin/admin-adduser";
+        return "admin/admin-userform";
     }
 
-    @PostMapping("/adduser")
+    @PostMapping("/user/form")                                      //saving user data from form
     public String addUser(@RequestParam("userid") Long userId, @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "admin/admin-adduser";
+            return "admin/admin-userform";                       //checking if the form is filled properly
         }
-        User userToSave=new User();
-        if (userId != null) {
-            userToSave = userService.findById(userId);
+        User userToSave=new User();                             //creating an User object to save it in DB
+        if (userId != null) {                                   //checking if User parameter is a new user or edited user
+            userToSave = userService.findById(userId);          //filling object to save with form user data
             userToSave.setEmail(user.getEmail());
             userToSave.setPassword(user.getPassword());
             userToSave.setFirstName(user.getFirstName());
@@ -102,15 +102,15 @@ public class AdminController {
             userToSave.setRoles(user.getRoles());
             userToSave.setEnabled(user.isEnabled());
         } else {
-            userToSave = user;
+            userToSave = user;                                  //if User parameter is a new user, filling user to save with form data
         }
-        userService.saveUser(userToSave);
+        userService.saveUser(userToSave);                       //saving user in DB
         return "redirect:/admin/users";
     }
 
-    @GetMapping("edituser/{userid}")
+    @GetMapping("edituser/{userid}")                            //editing user form with filled data
     public String editForm(@PathVariable("userid") Long userId, Model model) {
         model.addAttribute("user", userService.findById(userId));
-        return "admin/admin-adduser";
+        return "admin/admin-userform";
     }
 }
