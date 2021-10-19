@@ -43,7 +43,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/admin/users">Lista użytkowników</a>
-                <a class="collapse-item" href="/admin/adduser">Dodaj użytkownika</a>
+                <a class="collapse-item" href="/admin/user/form">Dodaj użytkownika</a>
             </div>
         </div>
     </li>
@@ -58,7 +58,7 @@
         <div id="collapseInst" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/admin/institution/list">Lista instytucji</a>
-                <a class="collapse-item" href="/admin/institution/add">Dodaj instytucję</a>
+                <a class="collapse-item" href="/admin/institution/form">Dodaj instytucję</a>
             </div>
         </div>
     </li>

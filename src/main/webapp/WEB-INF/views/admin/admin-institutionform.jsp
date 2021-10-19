@@ -39,7 +39,7 @@
                                                                     width="100%" cellspacing="0">
                                                                     <tbody>
                                                                         <form:form modelAttribute="institution"
-                                                                            action="/admin/institution/add" method="post"
+                                                                            action="/admin/institution/form" method="post"
                                                                             name="addinstitution">
                                                                             <input type="hidden" name="institutionid" value="${institution.id}">
                                                                             <tr>

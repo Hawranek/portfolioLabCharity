@@ -6,8 +6,7 @@ import pl.coderslab.charity.entity.Institution;
 
 public interface InstitutionService {
     List<Institution> findAll();
-    void create(Institution institution);
-    void update(Institution institution);
+    void save(Institution institution);
     void remove(Institution institution);
     Institution findById(Long id);
 }

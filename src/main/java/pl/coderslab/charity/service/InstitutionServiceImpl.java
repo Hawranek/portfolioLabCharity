@@ -22,12 +22,7 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
-    public void create(Institution institution) {
-        institutionRepository.save(institution);
-    }
-
-    @Override
-    public void update(Institution institution) {
+    public void save(Institution institution) {
         institutionRepository.save(institution);
     }
 
