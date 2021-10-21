@@ -13,6 +13,7 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.service.DonationService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,12 +24,13 @@ public class DonationController {
 
     private final CategoryRepository categoryRepository;
     private final InstitutionRepository institutionRepository;
-    private final DonationRepository donationRepository;
+    private final DonationService dService;
 
-    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
+    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository,
+            DonationService dService) {
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
-        this.donationRepository = donationRepository;
+        this.dService = dService;
     }
 
     @ModelAttribute("institutions")
@@ -52,7 +54,7 @@ public class DonationController {
         if (result.hasErrors()){
             return "donation/donation-form";
         }
-        donationRepository.save(donation);
+        dService.save(donation);
         return "redirect:/";
     }
 
