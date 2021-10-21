@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -51,6 +52,9 @@ public class Donation {
     @NotNull(message = "Wybierz godzinę odebrania darów od Ciebie")
     private LocalTime pickUpTime;
     private String pickUpComment;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime created;
+    private boolean received;
 
     //tutaj można zamiast wpisywania w klasie message dla każdej walidacji dodać plik z listą message'ów
 
@@ -144,4 +148,33 @@ public class Donation {
     public void setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
     }
+
+    /**
+     * @return LocalDateTime return the created
+     */
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    /**
+     * @return boolean return the status
+     */
+    public boolean isReceived() {
+        return received;
+    }
+
+    /**
+     * @param received the status to set
+     */
+    public void setReceived(boolean status) {
+        this.received = status;
+    }
+
 }
