@@ -3,6 +3,9 @@
 
 
 <ul class="nav--actions">
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <li><a href="<c:url value="/admin"/>" class="btn btn--small btn--without-border">Panel Administratora</a></li>
+    </sec:authorize>
     <sec:authorize access="isAnonymous()">
         <li><a href="<c:url value="/user/login"/>" class="btn btn--small btn--without-border">Zaloguj</a></li>
         <li><a href="<c:url value="/user/register"/>" class="btn btn--small btn--highlighted">Załóż konto</a></li>
